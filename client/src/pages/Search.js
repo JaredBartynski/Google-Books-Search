@@ -5,24 +5,19 @@ import { BookList, BookListItem } from "../components/List";
 import { Input, SearchButton } from "../components/Input";
 
 class Search extends Component {
-  // instatiate state for list of books retrieved from googlebooks api and bookSearch value
   state = {
     books: [],
     bookSearch: "",
   };
 
   handleInputChange = (event) => {
-    // Destructure the name and value properties off of event.target
-    // Update the appropriate state
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
   handleFormSubmit = (event) => {
-    // When the form is submitted, prevent its default behavior, get book update the books state
     event.preventDefault();
 
-    // calls googlebooks api and returns searched book when search button is clicked
     API.searchBooks(this.state.bookSearch)
       .then((res) => {
         this.setState({ books: res.data.items }, function () {

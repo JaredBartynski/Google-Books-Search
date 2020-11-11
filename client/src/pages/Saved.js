@@ -4,17 +4,14 @@ import { Container, Row, Col } from "../components/Grid";
 import { BookList, BookListItem } from "../components/List";
 
 class Save extends Component {
-  // instantiate state for saved books
   state = {
     savedBooks: [],
   };
 
-  // loads saved books when Saved page loads
   componentDidMount() {
     this.loadBooks();
   }
 
-  // loads books from database
   loadBooks = (event) => {
     API.getBooks()
       .then((res) => {
